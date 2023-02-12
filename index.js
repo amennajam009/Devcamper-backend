@@ -17,3 +17,13 @@ const PORT = process.env.PORT || 6000
 const server =  app.listen(PORT, () => {
     console.log(`server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
 });
+
+//here we're doing error handling cuz hum nai chahtay k humri app crashed ho 
+// handle unhandle promise rejection
+process.on('unhandledRejection', (err, promise) => {
+
+    console.log(`Error: ${err.message}`.red)
+  
+    // close server & exit process
+    server.close(() => process.exit(1))
+  })
