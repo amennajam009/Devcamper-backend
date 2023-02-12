@@ -8,9 +8,14 @@ const logger=require("./middleware/logger")
 
 
 const app = express();
+//connecting db
+require("./database");
 //Creating App meta-data
+
 app.use("/api/v1", require("./routes"));
 app.use(logger);
+app.use(express.json());
+
 // define PORT
 // ye humri port hai jispy humra backend run hoga ic he port py run hoga 
 const PORT = process.env.PORT || 6000
