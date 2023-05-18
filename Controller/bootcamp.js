@@ -1,4 +1,6 @@
 
+const Bootcamp = require('../models/Bootcamp')
+
 // @desc    Get all bootcamps
 // @Routes  Get /api/v1/bootcamps
 // @acess   Public
@@ -45,20 +47,20 @@ exports.getBootcamps = async (req, res, next) => {
  // @Routes  post /api/v1/bootcamps
  // @acess   Private
  exports.createBootcamp = async (req, res, next) => {
-   try
-   {
-       const bootcamp = await Bootcamp.create(req.body);
-       res.status(201).json({
-           success: true,
-           data: bootcamp
-       });
-   }
-   catch (err)
-   {
+    try {
+      const bootcamp = await Bootcamp.create(req.body);
+      res.status(201).json({
+        success: true,
+        data: bootcamp
+      });
 
-       res.status(400).json({ success: false  })
-   }
-}
+    } catch (err) {
+      res.status(400).json({
+        success: false,
+        error: err.message  // Include the error message in the response
+      });
+    }
+  };
 
 
  
